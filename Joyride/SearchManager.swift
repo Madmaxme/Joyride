@@ -32,7 +32,6 @@ class SearchManager: NSObject, ObservableObject, SearchControllerDelegate {
         let coordinate = searchResult.coordinate
         mapManager?.centerMapOn(coordinate: coordinate, zoom: 14)
         
-        // Start navigation
         Task {
             do {
                 try await NavigationManager.startNavigation(
@@ -56,7 +55,6 @@ class SearchManager: NSObject, ObservableObject, SearchControllerDelegate {
         
         DispatchQueue.main.async {
             self.isVisible = false
-            
             self.mapManager?.addAnnotations(for: results)
             
             if let bounds = self.mapManager?.coordinateBounds(for: results.map { $0.coordinate }) {
@@ -79,9 +77,8 @@ class SearchManager: NSObject, ObservableObject, SearchControllerDelegate {
         return true
     }
     
-    // Add this method to show an error alert
     private func showErrorAlert(message: String) {
-            // In a real implementation, you would show a proper alert to the user
-            print("ERROR: \(message)")
-        }
+        print("ERROR: \(message)")
+        // Implement a proper alert here, e.g., using UIAlertController
     }
+}

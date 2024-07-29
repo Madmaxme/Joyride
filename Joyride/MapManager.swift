@@ -88,20 +88,6 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         mapView?.mapboxMap.styleURI = styles[currentStyleIndex]
     }
     
-    func addAnnotationsIfStyleLoaded(for results: [SearchResult]) {
-        if let mapboxMap = mapView?.mapboxMap {
-            if mapboxMap.style.isLoaded {
-                addAnnotations(for: results)
-            } else {
-                mapboxMap.onStyleLoaded.observe { [weak self] _ in
-                    self?.addAnnotations(for: results)
-                }
-            }
-        } else {
-            print("DEBUG: MapboxMap is not available")
-        }
-    }
-    
     func addAnnotations(for results: [SearchResult]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -280,7 +266,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                     print("DEBUG: Failed to extract required data")
                     print("DEBUG: Properties: \(String(describing: features.first?.queriedFeature.feature.properties))")
                     if let customData = features.first?.queriedFeature.feature.properties?["custom_data"] {
-                        print("DEBUG: Custom data: \(customData)")
+                        print("DEBUG: Custom data: \(String(describing: customData))")
                         print("DEBUG: Custom data type: \(type(of: customData))")
                     }
                 }
@@ -293,22 +279,22 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     // MARK: - CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.last else { return }
-            
-            let currentTime = Date()
-            if !initialLocationSet {
-                centerMapOn(coordinate: location.coordinate, zoom: 14)
-                initialLocationSet = true
-            } else if !isUserPanning && currentTime.timeIntervalSince(lastCameraUpdateTime) > 5 {
-                mapView?.camera.ease(
-                    to: CameraOptions(center: location.coordinate, zoom: mapView?.cameraState.zoom),
-                    duration: 0.5
-                )
-                lastCameraUpdateTime = currentTime
-            }
-            
-            print("DEBUG: Location updated - isUserPanning: \(isUserPanning)")
+        guard let location = locations.last else { return }
+        
+        let currentTime = Date()
+        if !initialLocationSet {
+            centerMapOn(coordinate: location.coordinate, zoom: 14)
+            initialLocationSet = true
+        } else if !isUserPanning && currentTime.timeIntervalSince(lastCameraUpdateTime) > 5 {
+            mapView?.camera.ease(
+                to: CameraOptions(center: location.coordinate, zoom: mapView?.mapboxMap.cameraState.zoom),
+                duration: 0.5
+            )
+            lastCameraUpdateTime = currentTime
         }
+        
+        print("DEBUG: Location updated - isUserPanning: \(isUserPanning)")
+    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location manager error: \(error.localizedDescription)")

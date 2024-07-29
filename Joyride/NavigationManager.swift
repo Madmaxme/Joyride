@@ -28,7 +28,6 @@ class NavigationManager {
     static func startNavigation(to coordinate: CLLocationCoordinate2D, name: String, mapView: MapView?, styleURI: String) async throws {
         print("DEBUG: NavigationManager.startNavigation called with destination: \(name) at \(coordinate)")
         
-        // Check for valid coordinates
         guard CLLocationCoordinate2DIsValid(coordinate) && coordinate.latitude != 0 && coordinate.longitude != 0 else {
             print("DEBUG: Invalid destination coordinates")
             throw NavigationError.invalidDestination
@@ -64,15 +63,12 @@ class NavigationManager {
                 )
                 navigationViewController.modalPresentationStyle = .fullScreen
                 
-                // Apply the selected style to the navigation map view
                 if let styleURI = StyleURI(rawValue: styleURI) {
                     navigationViewController.navigationMapView?.mapView.mapboxMap.loadStyle(styleURI)
                 }
                 
-                // Apply dynamic colors to the navigation UI
                 navigationViewController.view.backgroundColor = .dynamicNavigationBackground
                 
-                // Customize compass and logo options
                 var compassOptions = navigationViewController.navigationMapView?.mapView.ornaments.options.compass
                 compassOptions?.position = .topRight
                 
@@ -82,7 +78,6 @@ class NavigationManager {
                 navigationViewController.navigationMapView?.mapView.ornaments.options.compass = compassOptions ?? CompassViewOptions()
                 navigationViewController.navigationMapView?.mapView.ornaments.options.logo = logoOptions ?? LogoViewOptions()
                 
-                // Present the navigation view controller
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let rootViewController = windowScene.windows.first?.rootViewController {
                     await MainActor.run {

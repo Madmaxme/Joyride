@@ -63,7 +63,9 @@ struct ContentView: View {
             mapManager.setupMapView()
         }
         .onChange(of: mapManager.annotationsAdded) { _ in
-            mapNeedsUpdate = true
+            DispatchQueue.main.async {
+                mapNeedsUpdate = true
+            }
         }
     }
     
@@ -136,7 +138,6 @@ struct MapboxSearchViewRepresentable: UIViewControllerRepresentable {
         searchController.delegate = searchManager
         searchManager.searchController = searchController
         
-        // Configure category search
         searchController.categorySearchEngine = searchManager.categorySearchEngine
         
         let panelController = MapboxPanelController(rootViewController: searchController)
@@ -198,11 +199,5 @@ struct UserLocationButton: View {
                 .clipShape(Circle())
                 .shadow(radius: 4)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
