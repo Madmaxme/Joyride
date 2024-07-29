@@ -27,28 +27,19 @@ class NavigationManager {
     
     static func startNavigation(to coordinate: CLLocationCoordinate2D, name: String, mapView: MapView?, styleURI: String) async throws {
         print("DEBUG: NavigationManager.startNavigation called with destination: \(name) at \(coordinate)")
-        
-        guard CLLocationCoordinate2DIsValid(coordinate) && coordinate.latitude != 0 && coordinate.longitude != 0 else {
-            print("DEBUG: Invalid destination coordinates")
-            throw NavigationError.invalidDestination
-        }
-        
-        guard let userLocation = mapView?.location.latestLocation?.coordinate else {
-            print("DEBUG: User location not available")
-            throw NavigationError.userLocationNotAvailable
-        }
-        
+
+        let userLocation = try await getUserLocation(mapView: mapView)
         print("DEBUG: User location found: \(userLocation)")
-        
+
         let origin = Waypoint(coordinate: userLocation)
         let destination = Waypoint(coordinate: coordinate, name: name)
-        
+
         let options = NavigationRouteOptions(waypoints: [origin, destination])
-        
+
         do {
             let request = mapboxNavigation.routingProvider().calculateRoutes(options: options)
             let result = await request.result
-            
+
             switch result {
             case .success(let navigationRoutes):
                 let navigationOptions = NavigationOptions(
@@ -56,28 +47,34 @@ class NavigationManager {
                     voiceController: mapboxNavigationProvider.routeVoiceController,
                     eventsManager: mapboxNavigationProvider.eventsManager()
                 )
-                
+
                 let navigationViewController = NavigationViewController(
                     navigationRoutes: navigationRoutes,
                     navigationOptions: navigationOptions
                 )
                 navigationViewController.modalPresentationStyle = .fullScreen
-                
+
+                // Set the initial camera position to the user's location
+                navigationViewController.navigationMapView?.mapView.camera.ease(
+                    to: CameraOptions(center: userLocation, zoom: 15),
+                    duration: 0
+                )
+
                 if let styleURI = StyleURI(rawValue: styleURI) {
-                    navigationViewController.navigationMapView?.mapView.mapboxMap.loadStyle(styleURI)
+                    await navigationViewController.navigationMapView?.mapView.mapboxMap.loadStyleURI(styleURI)
                 }
-                
+
                 navigationViewController.view.backgroundColor = .dynamicNavigationBackground
-                
-                var compassOptions = navigationViewController.navigationMapView?.mapView.ornaments.options.compass
+
+                var compassOptions: CompassViewOptions? = navigationViewController.navigationMapView?.mapView.ornaments.options.compass
                 compassOptions?.position = .topRight
-                
-                var logoOptions = navigationViewController.navigationMapView?.mapView.ornaments.options.logo
+
+                var logoOptions: LogoViewOptions? = navigationViewController.navigationMapView?.mapView.ornaments.options.logo
                 logoOptions?.position = .bottomLeft
-                
+
                 navigationViewController.navigationMapView?.mapView.ornaments.options.compass = compassOptions ?? CompassViewOptions()
                 navigationViewController.navigationMapView?.mapView.ornaments.options.logo = logoOptions ?? LogoViewOptions()
-                
+
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let rootViewController = windowScene.windows.first?.rootViewController {
                     await MainActor.run {
@@ -87,6 +84,7 @@ class NavigationManager {
                 } else {
                     throw NavigationError.presentationFailed
                 }
+
             case .failure(let error):
                 print("Error calculating route: \(error.localizedDescription)")
                 throw NavigationError.routeCalculationFailed
@@ -96,4 +94,17 @@ class NavigationManager {
             throw error
         }
     }
+
+    static func getUserLocation(mapView: MapView?) async throws -> CLLocationCoordinate2D {
+        for _ in 0..<10 { // Try up to 10 times
+            if let userLocation = mapView?.location.latestLocation?.coordinate,
+               CLLocationCoordinate2DIsValid(userLocation) {
+                return userLocation
+            }
+            try await Task.sleep(nanoseconds: 100_000_000) // Wait 0.2 seconds before trying again
+        }
+        throw NavigationError.userLocationNotAvailable
+    }
 }
+
+
