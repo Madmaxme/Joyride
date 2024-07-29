@@ -1,0 +1,681 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66EA5BE22C4E05680018A261 /* JoyrideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5BE12C4E05680018A261 /* JoyrideApp.swift */; };
+		66EA5BE42C4E05680018A261 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5BE32C4E05680018A261 /* ContentView.swift */; };
+		66EA5BE62C4E05690018A261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EA5BE52C4E05690018A261 /* Assets.xcassets */; };
+		66EA5BE92C4E05690018A261 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EA5BE82C4E05690018A261 /* Preview Assets.xcassets */; };
+		66EA5BF32C4E05690018A261 /* JoyrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5BF22C4E05690018A261 /* JoyrideTests.swift */; };
+		66EA5BFD2C4E05690018A261 /* JoyrideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5BFC2C4E05690018A261 /* JoyrideUITests.swift */; };
+		66EA5BFF2C4E05690018A261 /* JoyrideUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5BFE2C4E05690018A261 /* JoyrideUITestsLaunchTests.swift */; };
+		66EA5C0D2C4E059A0018A261 /* MapboxNavigationCore in Frameworks */ = {isa = PBXBuildFile; productRef = 66EA5C0C2C4E059A0018A261 /* MapboxNavigationCore */; };
+		66EA5C0F2C4E059A0018A261 /* MapboxNavigationUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 66EA5C0E2C4E059A0018A261 /* MapboxNavigationUIKit */; };
+		66EA5C132C4E07270018A261 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 66EA5C122C4E07270018A261 /* MapboxSearch */; };
+		66EA5C152C4E07270018A261 /* MapboxSearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = 66EA5C142C4E07270018A261 /* MapboxSearchUI */; };
+		66EA5C252C4F4C620018A261 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5C242C4F4C620018A261 /* MapManager.swift */; };
+		66EA5C292C4F4C880018A261 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5C282C4F4C880018A261 /* NavigationManager.swift */; };
+		66EA5C2B2C5009240018A261 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5C2A2C5009240018A261 /* ColorExtensions.swift */; };
+		66EA5C372C504F0F0018A261 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5C362C504F0F0018A261 /* SearchManager.swift */; };
+		66EA5C3F2C5212060018A261 /* SearchResultCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA5C3E2C5212060018A261 /* SearchResultCalloutView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66EA5BEF2C4E05690018A261 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA5BD62C4E05680018A261 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66EA5BDD2C4E05680018A261;
+			remoteInfo = Joyride;
+		};
+		66EA5BF92C4E05690018A261 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA5BD62C4E05680018A261 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66EA5BDD2C4E05680018A261;
+			remoteInfo = Joyride;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		66EA5BDE2C4E05680018A261 /* Joyride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joyride.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66EA5BE12C4E05680018A261 /* JoyrideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyrideApp.swift; sourceTree = "<group>"; };
+		66EA5BE32C4E05680018A261 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		66EA5BE52C4E05690018A261 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66EA5BE82C4E05690018A261 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		66EA5BEE2C4E05690018A261 /* JoyrideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoyrideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66EA5BF22C4E05690018A261 /* JoyrideTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyrideTests.swift; sourceTree = "<group>"; };
+		66EA5BF82C4E05690018A261 /* JoyrideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoyrideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66EA5BFC2C4E05690018A261 /* JoyrideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyrideUITests.swift; sourceTree = "<group>"; };
+		66EA5BFE2C4E05690018A261 /* JoyrideUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyrideUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		66EA5C102C4E064C0018A261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		66EA5C242C4F4C620018A261 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		66EA5C282C4F4C880018A261 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		66EA5C2A2C5009240018A261 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		66EA5C362C504F0F0018A261 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		66EA5C3E2C5212060018A261 /* SearchResultCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCalloutView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66EA5BDB2C4E05680018A261 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66EA5C132C4E07270018A261 /* MapboxSearch in Frameworks */,
+				66EA5C152C4E07270018A261 /* MapboxSearchUI in Frameworks */,
+				66EA5C0F2C4E059A0018A261 /* MapboxNavigationUIKit in Frameworks */,
+				66EA5C0D2C4E059A0018A261 /* MapboxNavigationCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66EA5BEB2C4E05690018A261 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66EA5BF52C4E05690018A261 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66EA5BD52C4E05680018A261 = {
+			isa = PBXGroup;
+			children = (
+				66EA5BE02C4E05680018A261 /* Joyride */,
+				66EA5BF12C4E05690018A261 /* JoyrideTests */,
+				66EA5BFB2C4E05690018A261 /* JoyrideUITests */,
+				66EA5BDF2C4E05680018A261 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		66EA5BDF2C4E05680018A261 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66EA5BDE2C4E05680018A261 /* Joyride.app */,
+				66EA5BEE2C4E05690018A261 /* JoyrideTests.xctest */,
+				66EA5BF82C4E05690018A261 /* JoyrideUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66EA5BE02C4E05680018A261 /* Joyride */ = {
+			isa = PBXGroup;
+			children = (
+				66EA5C102C4E064C0018A261 /* Info.plist */,
+				66EA5BE12C4E05680018A261 /* JoyrideApp.swift */,
+				66EA5BE32C4E05680018A261 /* ContentView.swift */,
+				66EA5BE52C4E05690018A261 /* Assets.xcassets */,
+				66EA5BE72C4E05690018A261 /* Preview Content */,
+				66EA5C242C4F4C620018A261 /* MapManager.swift */,
+				66EA5C282C4F4C880018A261 /* NavigationManager.swift */,
+				66EA5C2A2C5009240018A261 /* ColorExtensions.swift */,
+				66EA5C362C504F0F0018A261 /* SearchManager.swift */,
+				66EA5C3E2C5212060018A261 /* SearchResultCalloutView.swift */,
+			);
+			path = Joyride;
+			sourceTree = "<group>";
+		};
+		66EA5BE72C4E05690018A261 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				66EA5BE82C4E05690018A261 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		66EA5BF12C4E05690018A261 /* JoyrideTests */ = {
+			isa = PBXGroup;
+			children = (
+				66EA5BF22C4E05690018A261 /* JoyrideTests.swift */,
+			);
+			path = JoyrideTests;
+			sourceTree = "<group>";
+		};
+		66EA5BFB2C4E05690018A261 /* JoyrideUITests */ = {
+			isa = PBXGroup;
+			children = (
+				66EA5BFC2C4E05690018A261 /* JoyrideUITests.swift */,
+				66EA5BFE2C4E05690018A261 /* JoyrideUITestsLaunchTests.swift */,
+			);
+			path = JoyrideUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		66EA5BDD2C4E05680018A261 /* Joyride */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66EA5C022C4E05690018A261 /* Build configuration list for PBXNativeTarget "Joyride" */;
+			buildPhases = (
+				66EA5BDA2C4E05680018A261 /* Sources */,
+				66EA5BDB2C4E05680018A261 /* Frameworks */,
+				66EA5BDC2C4E05680018A261 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Joyride;
+			packageProductDependencies = (
+				66EA5C0C2C4E059A0018A261 /* MapboxNavigationCore */,
+				66EA5C0E2C4E059A0018A261 /* MapboxNavigationUIKit */,
+				66EA5C122C4E07270018A261 /* MapboxSearch */,
+				66EA5C142C4E07270018A261 /* MapboxSearchUI */,
+			);
+			productName = Joyride;
+			productReference = 66EA5BDE2C4E05680018A261 /* Joyride.app */;
+			productType = "com.apple.product-type.application";
+		};
+		66EA5BED2C4E05690018A261 /* JoyrideTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66EA5C052C4E05690018A261 /* Build configuration list for PBXNativeTarget "JoyrideTests" */;
+			buildPhases = (
+				66EA5BEA2C4E05690018A261 /* Sources */,
+				66EA5BEB2C4E05690018A261 /* Frameworks */,
+				66EA5BEC2C4E05690018A261 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66EA5BF02C4E05690018A261 /* PBXTargetDependency */,
+			);
+			name = JoyrideTests;
+			productName = JoyrideTests;
+			productReference = 66EA5BEE2C4E05690018A261 /* JoyrideTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		66EA5BF72C4E05690018A261 /* JoyrideUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66EA5C082C4E05690018A261 /* Build configuration list for PBXNativeTarget "JoyrideUITests" */;
+			buildPhases = (
+				66EA5BF42C4E05690018A261 /* Sources */,
+				66EA5BF52C4E05690018A261 /* Frameworks */,
+				66EA5BF62C4E05690018A261 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66EA5BFA2C4E05690018A261 /* PBXTargetDependency */,
+			);
+			name = JoyrideUITests;
+			productName = JoyrideUITests;
+			productReference = 66EA5BF82C4E05690018A261 /* JoyrideUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66EA5BD62C4E05680018A261 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					66EA5BDD2C4E05680018A261 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					66EA5BED2C4E05690018A261 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 66EA5BDD2C4E05680018A261;
+					};
+					66EA5BF72C4E05690018A261 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 66EA5BDD2C4E05680018A261;
+					};
+				};
+			};
+			buildConfigurationList = 66EA5BD92C4E05680018A261 /* Build configuration list for PBXProject "Joyride" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 66EA5BD52C4E05680018A261;
+			packageReferences = (
+				66EA5C0B2C4E059A0018A261 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */,
+				66EA5C112C4E07270018A261 /* XCRemoteSwiftPackageReference "search-ios" */,
+			);
+			productRefGroup = 66EA5BDF2C4E05680018A261 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66EA5BDD2C4E05680018A261 /* Joyride */,
+				66EA5BED2C4E05690018A261 /* JoyrideTests */,
+				66EA5BF72C4E05690018A261 /* JoyrideUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66EA5BDC2C4E05680018A261 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66EA5BE92C4E05690018A261 /* Preview Assets.xcassets in Resources */,
+				66EA5BE62C4E05690018A261 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66EA5BEC2C4E05690018A261 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66EA5BF62C4E05690018A261 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66EA5BDA2C4E05680018A261 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66EA5BE42C4E05680018A261 /* ContentView.swift in Sources */,
+				66EA5C252C4F4C620018A261 /* MapManager.swift in Sources */,
+				66EA5BE22C4E05680018A261 /* JoyrideApp.swift in Sources */,
+				66EA5C372C504F0F0018A261 /* SearchManager.swift in Sources */,
+				66EA5C3F2C5212060018A261 /* SearchResultCalloutView.swift in Sources */,
+				66EA5C292C4F4C880018A261 /* NavigationManager.swift in Sources */,
+				66EA5C2B2C5009240018A261 /* ColorExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66EA5BEA2C4E05690018A261 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66EA5BF32C4E05690018A261 /* JoyrideTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66EA5BF42C4E05690018A261 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66EA5BFD2C4E05690018A261 /* JoyrideUITests.swift in Sources */,
+				66EA5BFF2C4E05690018A261 /* JoyrideUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66EA5BF02C4E05690018A261 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66EA5BDD2C4E05680018A261 /* Joyride */;
+			targetProxy = 66EA5BEF2C4E05690018A261 /* PBXContainerItemProxy */;
+		};
+		66EA5BFA2C4E05690018A261 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66EA5BDD2C4E05680018A261 /* Joyride */;
+			targetProxy = 66EA5BF92C4E05690018A261 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		66EA5C002C4E05690018A261 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		66EA5C012C4E05690018A261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66EA5C032C4E05690018A261 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Joyride/Preview Content\"";
+				DEVELOPMENT_TEAM = XSMC7XA3UR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Joyride/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Your precise location is used to calculate turn-by-turn directions, show your location on the map, and help improve the map.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Joyride needs access to your location to provide navigation services and show your position on the map.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Maximillian.Joyride;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		66EA5C042C4E05690018A261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Joyride/Preview Content\"";
+				DEVELOPMENT_TEAM = XSMC7XA3UR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Joyride/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Your precise location is used to calculate turn-by-turn directions, show your location on the map, and help improve the map.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Joyride needs access to your location to provide navigation services and show your position on the map.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Maximillian.Joyride;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		66EA5C062C4E05690018A261 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XSMC7XA3UR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Maximillian.JoyrideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Joyride.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Joyride";
+			};
+			name = Debug;
+		};
+		66EA5C072C4E05690018A261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XSMC7XA3UR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Maximillian.JoyrideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Joyride.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Joyride";
+			};
+			name = Release;
+		};
+		66EA5C092C4E05690018A261 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XSMC7XA3UR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Maximillian.JoyrideUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Joyride;
+			};
+			name = Debug;
+		};
+		66EA5C0A2C4E05690018A261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XSMC7XA3UR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Maximillian.JoyrideUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Joyride;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66EA5BD92C4E05680018A261 /* Build configuration list for PBXProject "Joyride" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66EA5C002C4E05690018A261 /* Debug */,
+				66EA5C012C4E05690018A261 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66EA5C022C4E05690018A261 /* Build configuration list for PBXNativeTarget "Joyride" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66EA5C032C4E05690018A261 /* Debug */,
+				66EA5C042C4E05690018A261 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66EA5C052C4E05690018A261 /* Build configuration list for PBXNativeTarget "JoyrideTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66EA5C062C4E05690018A261 /* Debug */,
+				66EA5C072C4E05690018A261 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66EA5C082C4E05690018A261 /* Build configuration list for PBXNativeTarget "JoyrideUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66EA5C092C4E05690018A261 /* Debug */,
+				66EA5C0A2C4E05690018A261 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		66EA5C0B2C4E059A0018A261 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-navigation-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+		66EA5C112C4E07270018A261 /* XCRemoteSwiftPackageReference "search-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/search-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		66EA5C0C2C4E059A0018A261 /* MapboxNavigationCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66EA5C0B2C4E059A0018A261 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */;
+			productName = MapboxNavigationCore;
+		};
+		66EA5C0E2C4E059A0018A261 /* MapboxNavigationUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66EA5C0B2C4E059A0018A261 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */;
+			productName = MapboxNavigationUIKit;
+		};
+		66EA5C122C4E07270018A261 /* MapboxSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66EA5C112C4E07270018A261 /* XCRemoteSwiftPackageReference "search-ios" */;
+			productName = MapboxSearch;
+		};
+		66EA5C142C4E07270018A261 /* MapboxSearchUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66EA5C112C4E07270018A261 /* XCRemoteSwiftPackageReference "search-ios" */;
+			productName = MapboxSearchUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 66EA5BD62C4E05680018A261 /* Project object */;
+}
