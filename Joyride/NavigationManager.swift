@@ -25,7 +25,7 @@ class NavigationManager {
         return mapboxNavigationProvider.mapboxNavigation
     }
     
-    static func startNavigation(to coordinate: CLLocationCoordinate2D, name: String, mapView: MapView?, styleURI: String) async throws {
+    static func startNavigation(to coordinate: CLLocationCoordinate2D, name: String, mapView: MapView?, styleURI: String, navigationStateManager: NavigationStateManager) async throws {
         print("DEBUG: NavigationManager.startNavigation called with destination: \(name) at \(coordinate)")
 
         let userLocation = try await getUserLocation(mapView: mapView)
@@ -54,6 +54,9 @@ class NavigationManager {
                 )
                 navigationViewController.modalPresentationStyle = .fullScreen
 
+                // Set the delegate
+                navigationViewController.delegate = NavigationViewControllerDelegateImpl(navigationStateManager: navigationStateManager)
+
                 // Set the initial camera position to the user's location
                 navigationViewController.navigationMapView?.mapView.camera.ease(
                     to: CameraOptions(center: userLocation, zoom: 15),
@@ -61,7 +64,7 @@ class NavigationManager {
                 )
 
                 if let styleURI = StyleURI(rawValue: styleURI) {
-                    await navigationViewController.navigationMapView?.mapView.mapboxMap.loadStyleURI(styleURI)
+                    await navigationViewController.navigationMapView?.mapView.mapboxMap.loadStyle(styleURI)
                 }
 
                 navigationViewController.view.backgroundColor = .dynamicNavigationBackground
@@ -79,6 +82,7 @@ class NavigationManager {
                    let rootViewController = windowScene.windows.first?.rootViewController {
                     await MainActor.run {
                         rootViewController.present(navigationViewController, animated: true)
+                        navigationStateManager.isNavigating = true
                     }
                     print("DEBUG: Navigation view controller presented successfully")
                 } else {
@@ -107,4 +111,14 @@ class NavigationManager {
     }
 }
 
-
+class NavigationViewControllerDelegateImpl: NSObject, NavigationViewControllerDelegate {
+    let navigationStateManager: NavigationStateManager
+    
+    init(navigationStateManager: NavigationStateManager) {
+        self.navigationStateManager = navigationStateManager
+    }
+    
+    func navigationViewControllerDidDismiss(_ navigationViewController: NavigationViewController, byCanceling canceled: Bool) {
+        navigationStateManager.isNavigating = false
+    }
+}

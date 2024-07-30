@@ -22,11 +22,15 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     weak var searchManager: SearchManager?
     private var initialLocationSet = false
     private var lastCameraUpdateTime: Date = Date.distantPast
-    
-    override init() {
+    let navigationStateManager: NavigationStateManager
+
+    init(navigationStateManager: NavigationStateManager) {
+        self.navigationStateManager = navigationStateManager
         super.init()
         setupLocationManager()
     }
+    
+    
     
     func setupMapView() {
         guard mapView == nil else { return }
@@ -252,7 +256,8 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                                     to: coordinate,
                                     name: name,
                                     mapView: mapView,
-                                    styleURI: styleURI
+                                    styleURI: styleURI,
+                                    navigationStateManager: self.navigationStateManager
                                 )
                                 print("DEBUG: Navigation started successfully")
                             } catch {

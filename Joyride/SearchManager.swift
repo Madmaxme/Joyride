@@ -21,12 +21,15 @@ class SearchManager: NSObject, ObservableObject, SearchControllerDelegate {
     var styles: [StyleURI]
     weak var searchController: MapboxSearchController?
     let categorySearchEngine = CategorySearchEngine()
-    
-    init(mapManager: MapManager, styles: [StyleURI]) {
+    let navigationStateManager: NavigationStateManager
+
+    init(mapManager: MapManager, styles: [StyleURI], navigationStateManager: NavigationStateManager) {
         self.mapManager = mapManager
         self.styles = styles
+        self.navigationStateManager = navigationStateManager
         super.init()
     }
+    
     
     func searchResultSelected(_ searchResult: SearchResult) {
         let coordinate = searchResult.coordinate
@@ -38,7 +41,8 @@ class SearchManager: NSObject, ObservableObject, SearchControllerDelegate {
                     to: coordinate,
                     name: searchResult.name,
                     mapView: mapManager?.mapView,
-                    styleURI: styles[mapManager?.currentStyleIndex ?? 0].rawValue
+                    styleURI: styles[mapManager?.currentStyleIndex ?? 0].rawValue,
+                    navigationStateManager: self.navigationStateManager
                 )
                 print("DEBUG: Navigation started successfully from SearchManager")
             } catch {

@@ -10,9 +10,11 @@ import MapboxSearch
 import MapboxSearchUI
 
 struct ContentView: View {
-    @StateObject private var mapManager = MapManager()
+    @StateObject private var mapManager: MapManager
     @StateObject private var searchManager: SearchManager
     @State private var mapNeedsUpdate = false
+    @ObservedObject var navigationStateManager: NavigationStateManager
+    
     private let styles = [
         StyleURI.streets,
         StyleURI.outdoors,
@@ -22,9 +24,10 @@ struct ContentView: View {
         StyleURI.satelliteStreets
     ]
     
-    init() {
-        let mapManager = MapManager()
-        let searchManager = SearchManager(mapManager: mapManager, styles: styles)
+    init(navigationStateManager: NavigationStateManager) {
+        self.navigationStateManager = navigationStateManager
+        let mapManager = MapManager(navigationStateManager: navigationStateManager)
+        let searchManager = SearchManager(mapManager: mapManager, styles: styles, navigationStateManager: navigationStateManager)
         _mapManager = StateObject(wrappedValue: mapManager)
         _searchManager = StateObject(wrappedValue: searchManager)
     }
@@ -113,6 +116,7 @@ struct MapViewRepresentable: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MapView {
         let mapView = MapManager.createMapView()
+        mapView.frame = UIScreen.main.bounds
         self.mapManager.mapView = mapView
         self.mapManager.setupTapGestureRecognizer()
         return mapView
