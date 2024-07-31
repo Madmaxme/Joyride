@@ -33,14 +33,27 @@ class SearchManager: NSObject, ObservableObject, SearchControllerDelegate {
     
     func searchResultSelected(_ searchResult: SearchResult) {
         let coordinate = searchResult.coordinate
-        mapManager?.centerMapOn(coordinate: coordinate, zoom: 14)
         
         Task {
             do {
+                guard let mapView = mapManager?.mapView,
+                      let userLocation = try? await NavigationManager.getUserLocation(mapView: mapView) else {
+                    print("DEBUG: User location not available")
+                    await MainActor.run {
+                        showErrorAlert(message: "Unable to determine your location. Please try again.")
+                    }
+                    return
+                }
+                
+                // Stop any ongoing camera animations
+                await MainActor.run {
+                    mapManager?.mapView?.camera.cancelAnimations()
+                }
+                
                 try await NavigationManager.startNavigation(
                     to: coordinate,
                     name: searchResult.name,
-                    mapView: mapManager?.mapView,
+                    mapView: mapView,
                     styleURI: styles[mapManager?.currentStyleIndex ?? 0].rawValue,
                     navigationStateManager: self.navigationStateManager
                 )

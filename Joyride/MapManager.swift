@@ -1,10 +1,3 @@
-//
-//  MapManager.swift
-//  Joyride
-//
-//  Created by Maximillian Ludwick on 7/22/24.
-//
-
 import MapboxMaps
 import CoreLocation
 import MapboxSearch
@@ -15,12 +8,13 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentStyleIndex = 0
     @Published var annotationsAdded = false
     @Published var isUserPanning = false
+    var isNavigationStarting: Bool = false
     private var locationManager: CLLocationManager?
     private let styles: [StyleURI] = [.streets, .outdoors, .light, .dark, .satellite, .satelliteStreets]
     private var pointAnnotationManager: PointAnnotationManager?
     private var tapGestureRecognizer: UITapGestureRecognizer?
     weak var searchManager: SearchManager?
-    private var initialLocationSet = false
+    @Published var initialLocationSet = false
     private var lastCameraUpdateTime: Date = Date.distantPast
     let navigationStateManager: NavigationStateManager
 
@@ -28,13 +22,14 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.navigationStateManager = navigationStateManager
         super.init()
         setupLocationManager()
+        print("DEBUG: MapManager initialized")
     }
-    
-    
     
     func setupMapView() {
         guard mapView == nil else { return }
         mapView = MapManager.createMapView()
+        mapView?.frame = UIScreen.main.bounds  // Set the frame explicitly
+        print("DEBUG: Map view created with frame: \(mapView?.frame ?? .zero)")
         mapView?.gestures.delegate = self
         setupTapGestureRecognizer()
         
@@ -44,6 +39,9 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.centerOnUserLocation()
             print("DEBUG: Map style loaded and gesture recognizers set up")
         }
+
+        // Start requesting location updates immediately
+        locationManager?.startUpdatingLocation()
     }
 
     func setupTapGestureRecognizer() {
@@ -58,7 +56,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     static func createMapView() -> MapView {
         let mapInitOptions = MapInitOptions(styleURI: .streets)
-        let mapView = MapView(frame: .zero, mapInitOptions: mapInitOptions)
+        let mapView = MapView(frame: UIScreen.main.bounds, mapInitOptions: mapInitOptions)
         mapView.location.options.puckType = .puck2D()
         return mapView
     }
@@ -249,6 +247,9 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                     if name != "Unknown" && latitude != 0 && longitude != 0 {
                         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                         
+                        // Stop any ongoing camera animations
+                        mapView.camera.cancelAnimations()
+                        
                         Task {
                             do {
                                 print("DEBUG: Calling NavigationManager.startNavigation")
@@ -284,25 +285,35 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     // MARK: - CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
+        guard let location = locations.last, !isNavigationStarting else {
+            print("DEBUG: Location update skipped. isNavigationStarting: \(isNavigationStarting)")
+            return
+        }
+        
+        print("DEBUG: Location updated to \(location.coordinate)")
         
         let currentTime = Date()
         if !initialLocationSet {
             centerMapOn(coordinate: location.coordinate, zoom: 14)
             initialLocationSet = true
-        } else if !isUserPanning && currentTime.timeIntervalSince(lastCameraUpdateTime) > 5 {
+            print("DEBUG: Initial location set: \(location.coordinate)")
+        } else if !isUserPanning && currentTime.timeIntervalSince(lastCameraUpdateTime) > 2 {
             mapView?.camera.ease(
                 to: CameraOptions(center: location.coordinate, zoom: mapView?.mapboxMap.cameraState.zoom),
                 duration: 0.5
             )
             lastCameraUpdateTime = currentTime
+            print("DEBUG: Camera updated to new location: \(location.coordinate)")
         }
         
         print("DEBUG: Location updated - isUserPanning: \(isUserPanning)")
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Location manager error: \(error.localizedDescription)")
+        print("DEBUG: Location manager error: \(error.localizedDescription)")
+        if let clError = error as? CLError {
+            print("DEBUG: CLError code: \(clError.code.rawValue)")
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
