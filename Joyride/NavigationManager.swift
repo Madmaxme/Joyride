@@ -31,16 +31,19 @@ class NavigationManager {
         print("DEBUG: NavigationManager.startNavigation called with destination: \(name) at \(coordinate)")
         
         guard let mapView = mapView, mapView.frame.size != .zero else {
-            print("DEBUG: MapView is not properly initialized")
+            print("DEBUG: MapView is not properly initialized. Frame: \(mapView?.frame ?? .zero)")
             throw NavigationError.mapViewNotInitialized
         }
         
-        // Set the flag to prevent automatic camera updates
+        print("DEBUG: MapView frame: \(mapView.frame)")
+        print("DEBUG: MapView bounds: \(mapView.bounds)")
+        
         if let gestureManagerDelegate = mapView.gestures.delegate {
             if let mapManager = gestureManagerDelegate as? MapManager {
                 mapManager.isNavigationStarting = true
+                print("DEBUG: Set isNavigationStarting to true")
             } else {
-                print("DEBUG: GestureManager delegate is not of type MapManager")
+                print("DEBUG: GestureManager delegate is not of type MapManager. Actual type: \(type(of: gestureManagerDelegate))")
             }
         } else {
             print("DEBUG: GestureManager delegate is nil")
@@ -129,49 +132,53 @@ class NavigationManager {
             return
         }
         
-        // Set initial camera to user location with a zoom level that makes sense for navigation
+        print("DEBUG: NavigationMapView frame: \(navigationMapView.frame)")
+        print("DEBUG: NavigationMapView bounds: \(navigationMapView.bounds)")
+        
         let initialCameraOptions = CameraOptions(center: userLocation, zoom: 15, bearing: 0, pitch: 0)
         navigationMapView.mapView.camera.ease(to: initialCameraOptions, duration: 0)
+        print("DEBUG: Set initial camera position to: \(userLocation)")
         
-        // Update viewport padding
         navigationMapView.viewportPadding = UIEdgeInsets(top: 20, left: 20, bottom: 40, right: 20)
+        print("DEBUG: Set viewport padding: \(navigationMapView.viewportPadding)")
         
-        // Configure the NavigationCamera
         navigationMapView.navigationCamera.viewportPadding = navigationMapView.viewportPadding
+        print("DEBUG: Set navigation camera viewport padding")
         
-        
-        
-        // Load style and set initial camera position
         if let styleURI = StyleURI(rawValue: styleURI) {
-            navigationMapView.mapView.mapboxMap.loadStyleURI(styleURI) { [weak navigationMapView] error in
+            print("DEBUG: Loading style URI: \(styleURI.rawValue)")
+            navigationMapView.mapView.mapboxMap.loadStyle(styleURI) { [weak navigationMapView] error in
                 if let error = error {
                     print("DEBUG: Failed to load map style: \(error.localizedDescription)")
                 } else {
                     print("DEBUG: Map style loaded successfully")
                     
-                    // Set the camera position immediately after style load
                     navigationMapView?.mapView.camera.ease(to: initialCameraOptions, duration: 0)
+                    print("DEBUG: Reset camera position after style load")
                     
-                    // Showcase the route without animation
                     navigationMapView?.showcase(
                         routes,
                         routesPresentationStyle: .all(),
                         animated: false,
                         duration: 0
                     )
+                    print("DEBUG: Showcased routes")
                     
-                    // Force the camera to update to following state
                     navigationMapView?.update(navigationCameraState: .following)
+                    print("DEBUG: Updated camera state to following")
                 }
             }
+        } else {
+            print("DEBUG: Invalid style URI: \(styleURI)")
         }
 
         navigationViewController.view.backgroundColor = .white
+        print("DEBUG: Set NavigationViewController background color to white")
 
-        // Configure other settings
         navigationMapView.showsAlternatives = true
         navigationMapView.routeLineTracksTraversal = true
         navigationMapView.showsRestrictedAreasOnRoute = true
+        print("DEBUG: Configured NavigationMapView settings")
         
         print("DEBUG: Initial camera state: \(navigationMapView.mapView.mapboxMap.cameraState)")
     }

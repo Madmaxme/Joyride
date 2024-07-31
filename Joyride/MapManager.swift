@@ -26,22 +26,31 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func setupMapView() {
-        guard mapView == nil else { return }
+        guard mapView == nil else {
+            print("DEBUG: MapView already exists, skipping setup")
+            return
+        }
         mapView = MapManager.createMapView()
-        mapView?.frame = UIScreen.main.bounds  // Set the frame explicitly
+        mapView?.frame = UIScreen.main.bounds
         print("DEBUG: Map view created with frame: \(mapView?.frame ?? .zero)")
+        print("DEBUG: Map view bounds: \(mapView?.bounds ?? .zero)")
         mapView?.gestures.delegate = self
+        print("DEBUG: Gesture delegate set to MapManager")
         setupTapGestureRecognizer()
         
         mapView?.mapboxMap.onStyleLoaded.observe { [weak self] _ in
-            guard let self = self else { return }
+            guard let self = self else {
+                print("DEBUG: Self is nil in style loaded callback")
+                return
+            }
             self.pointAnnotationManager = self.mapView?.annotations.makePointAnnotationManager()
+            print("DEBUG: PointAnnotationManager created: \(self.pointAnnotationManager != nil)")
             self.centerOnUserLocation()
             print("DEBUG: Map style loaded and gesture recognizers set up")
         }
 
-        // Start requesting location updates immediately
         locationManager?.startUpdatingLocation()
+        print("DEBUG: Started updating location")
     }
 
     func setupTapGestureRecognizer() {
@@ -285,7 +294,12 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     // MARK: - CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last, !isNavigationStarting else {
+        guard let location = locations.last else {
+            print("DEBUG: No locations in update")
+            return
+        }
+        
+        if isNavigationStarting {
             print("DEBUG: Location update skipped. isNavigationStarting: \(isNavigationStarting)")
             return
         }
