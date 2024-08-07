@@ -88,6 +88,7 @@ class SearchManager: NSObject, ObservableObject, SearchControllerDelegate {
 
     func updateStyleIndex(_ newIndex: Int) {
         self.styleIndex = newIndex
+        self.styleIndex = newIndex
     }
     
     func shouldCollapseForSelection(_ searchResult: SearchResult) -> Bool {

@@ -4,6 +4,7 @@
 //
 //  Created by Maximillian Ludwick on 7/21/24.
 //
+
 import SwiftUI
 import MapboxMaps
 import MapboxSearch
